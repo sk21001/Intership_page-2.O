@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaBriefcase, FaBuilding, FaUserGraduate } from "react-icons/fa";
 import ThreeBG from "./ThreeBG";
-import DemoVideo from "../src/assets/videos/demo.mp4";
+import DemoVideo from "../assets/videos/demo.mp4";
 const Hero = ({ onBrowseClick }) => {
   const videoRef = useRef(null);
   const [showVideo, setShowVideo] = useState(false);

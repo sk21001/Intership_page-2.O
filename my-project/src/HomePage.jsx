@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Hero from "../components/Hero";
-import Hirings from "../components/Hirings";
-import Habit from "../components/Habit";
+import Hero from "./components/Hero";
+import Hirings from "./components/Hirings";
+import Habit from "./components/Habit";
 
 const internships = [
   {

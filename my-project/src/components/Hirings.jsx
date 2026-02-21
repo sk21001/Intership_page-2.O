@@ -1,13 +1,13 @@
-import aicte from "../src/assets/images/aicte.png";
-import bookmyshow from "../src/assets/images/bookmyshow.png";
-import dpiit from "../src/assets/images/dpiit.png";
-import iso from "../src/assets/images/iso.png";
-import msme from "../src/assets/images/msme.png";
-import naps from "../src/assets/images/naps.png";
-import skillindia from "../src/assets/images/skillindia.png";
-import topmate from "../src/assets/images/topmate.png";
-import udemy from "../src/assets/images/udemy.png";
-import unstop from "../src/assets/images/unstop.png";
+import aicte from "../assets/images/aicte.png";
+import bookmyshow from "../assets/images/bookmyshow.png";
+import dpiit from "../assets/images/dpiit.png";
+import iso from "../assets/images/iso.png";
+import msme from "../assets/images/msme.png";
+import naps from "../assets/images/naps.png";
+import skillindia from "../assets/images/skillindia.png";
+import topmate from "../assets/images/topmate.png";
+import udemy from "../assets/images/udemy.png";
+import unstop from "../assets/images/unstop.png";
 
 import ThreeBG from "./ThreeBG";
 
