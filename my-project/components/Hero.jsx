@@ -133,16 +133,10 @@ const Hero = ({ onBrowseClick }) => {
           </div>
         </div>
 
-        {/* Right Side - Logo or Video */}
+        {/* Right Side - Video */}
         <div className="flex justify-center items-center w-full mt-10 lg:mt-0 relative">
           {!showVideo ? (
-            <div className="animate-bounce">
-              <img
-                src="/logo.png"
-                alt="XYZON Innovations"
-                className="max-w-sm w-full h-auto drop-shadow-2xl opacity-0 animate-fade-in"
-              />
-            </div>
+            <div></div>
           ) : (
             <div
               ref={videoRef}

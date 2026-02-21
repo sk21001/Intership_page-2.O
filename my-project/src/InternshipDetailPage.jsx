@@ -1,109 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const internshipData = {
-  frontend: {
-    title: "Frontend Developer Internship",
-    description: "Work on real projects and build a portfolio you can actually show.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
-    duration: "3 Months",
-    mode: "Hybrid / Remote",
-    tools: "HTML, CSS, JS, React, Git",
-    startDate: "May 1, 2024",
-    rating: "4.8",
-    reviews: "275",
-    learn: [
-      { title: "Frontend fundamentals", desc: "HTML, CSS, JavaScript and React with hands-on tasks." },
-      { title: "Project experience", desc: "Build landing pages and dashboards used in real scenarios." },
-      { title: "Certificate", desc: "AICTE-recognized certificate for your resume." },
-    ],
-    curriculum: [
-      "HTML & CSS basics",
-      "JavaScript essentials",
-      "React & APIs",
-      "Mentor guidance",
-      "Resume support",
-      "Placement help",
-    ],
-  },
-  dataAnalyst: {
-    title: "Data Analyst Internship",
-    description: "Master data analysis and create insights from real datasets.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978",
-    duration: "3 Months",
-    mode: "Hybrid / Remote",
-    tools: "Python, SQL, Tableau, Excel, Pandas",
-    startDate: "May 1, 2024",
-    rating: "4.9",
-    reviews: "320",
-    learn: [
-      { title: "Data fundamentals", desc: "SQL, Python, and data visualization with hands-on projects." },
-      { title: "Analytics experience", desc: "Work on real datasets and create actionable reports." },
-      { title: "Certificate", desc: "Industry-recognized certificate for your resume." },
-    ],
-    curriculum: [
-      "SQL & Database basics",
-      "Python for data analysis",
-      "Data visualization",
-      "Industry mentor guidance",
-      "Portfolio projects",
-      "Job placement support",
-    ],
-  },
-  backendDeveloper: {
-    title: "Backend Developer Internship",
-    description: "Build scalable systems and master server-side development.",
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
-    duration: "3 Months",
-    mode: "Hybrid / Remote",
-    tools: "Node.js, Express, MongoDB, SQL, APIs",
-    startDate: "May 1, 2024",
-    rating: "4.7",
-    reviews: "280",
-    learn: [
-      { title: "Backend fundamentals", desc: "Node.js, Express, databases, and API design." },
-      { title: "System design", desc: "Build robust applications handling real-world scenarios." },
-      { title: "Certificate", desc: "AICTE-recognized certificate for your resume." },
-    ],
-    curriculum: [
-      "Node.js & Express basics",
-      "Database design (SQL & MongoDB)",
-      "RESTful API development",
-      "Authentication & security",
-      "Code review practices",
-      "DevOps fundamentals",
-    ],
-  },
-  uiuxDesign: {
-    title: "UI/UX Design Internship",
-    description: "Create beautiful and user-friendly digital experiences.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&q=80",
-    duration: "3 Months",
-    mode: "Hybrid / Remote",
-    tools: "Figma, Adobe XD, Sketch, Prototyping",
-    startDate: "May 1, 2024",
-    rating: "4.8",
-    reviews: "210",
-    learn: [
-      { title: "Design fundamentals", desc: "UX principles, color theory, and typography." },
-      { title: "Real projects", desc: "Design interfaces for actual client projects." },
-      { title: "Certificate", desc: "AICTE-recognized certificate for your resume." },
-    ],
-    curriculum: [
-      "Design principles & UX basics",
-      "Figma mastery",
-      "Prototyping & testing",
-      "User research methods",
-      "Design systems",
-      "Portfolio development",
-    ],
-  },
-};
-
 export default function InternshipDetailPage() {
   const { type } = useParams();
   const navigate = useNavigate();
-  const data = internshipData[type];
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -117,15 +20,54 @@ export default function InternshipDetailPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
+  // Fetch internship data from API
   useEffect(() => {
+    const fetchInternshipData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`http://localhost:5000/internships/${type}`);
+        
+        if (!response.ok) {
+          throw new Error("Internship not found");
+        }
+        
+        const internshipData = await response.json();
+        setData(internshipData);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInternshipData();
     window.scrollTo(0, 0);
   }, [type]);
 
-  if (!data) {
+  // Loading state
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Internship not found</h1>
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-orange-500 mx-auto mb-4"></div>
+          <p className="text-xl text-gray-600">Loading internship details...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !data) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-4 text-red-600">
+            {error || "Internship not found"}
+          </h1>
+          <p className="text-gray-600 mb-6">
+            The internship you're looking for could not be loaded.
+          </p>
           <button
             onClick={() => navigate("/")}
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg"
@@ -232,7 +174,7 @@ export default function InternshipDetailPage() {
             <div className="flex flex-wrap gap-3 sm:gap-4">
               <button
                 onClick={handleApply}
-                className="bg-orange-500 hover:bg-orange-600 px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold shadow-lg text-sm sm:text-base"
+                className="bg-orange-500 hover:bg-orange-600 hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold shadow-lg text-sm sm:text-base transition-all duration-300"
               >
                 Apply Now
               </button>
@@ -295,7 +237,7 @@ export default function InternshipDetailPage() {
 
           <button
             onClick={handleApply}
-            className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base"
+            className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer text-white py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base transition-all duration-300"
           >
             Join Internship →
           </button>

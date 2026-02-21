@@ -252,7 +252,7 @@ function InternshipCard({ internship, onSelect }) {
 
         <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">{internship.description}</p>
 
-        <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base group-hover:shadow-lg transition">
+        <button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 sm:py-3 rounded-xl font-semibold text-sm sm:text-base cursor-pointer hover:from-purple-600 hover:to-indigo-600 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300">
           Explore Now →
         </button>
       </div>

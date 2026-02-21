@@ -1,10 +1,28 @@
 import { useEffect, useState } from "react";
-import data from "./habitTableData.json";
-
 import ThreeBG from "./ThreeBG";
 
 const Habit = () => {
-  // Fully styled, modern typing animation for the heading
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch habit data from MongoDB API
+  useEffect(() => {
+    const fetchHabitData = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/habits");
+        if (!response.ok) throw new Error("Failed to fetch");
+        const habitData = await response.json();
+        setData(habitData);
+      } catch (error) {
+        console.error("Error fetching habit data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHabitData();
+  }, []);
+
+  // Typing animation for the heading
   const fullTitle = "Why Xyzon Innovations Stands Out";
   const [typedTitle, setTypedTitle] = useState("");
   const [done, setDone] = useState(false);
@@ -25,6 +43,14 @@ const Habit = () => {
     type();
     return () => clearTimeout(timeout);
   }, [done]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-indigo-500"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white relative min-h-screen px-4 sm:px-8 py-16 overflow-hidden">
@@ -49,7 +75,7 @@ const Habit = () => {
         <div className="hidden lg:grid grid-cols-1 gap-4">
           {data.map((row, i) => (
             <div
-              key={i}
+              key={row._id || i}
               className="group rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 bg-white"
             >
               <div className="grid grid-cols-1 md:grid-cols-3 items-stretch">
@@ -103,7 +129,7 @@ const Habit = () => {
         <div className="lg:hidden space-y-3">
           {data.map((row, i) => (
             <div
-              key={i}
+              key={row._id || i}
               className="group rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white border border-purple-100"
             >
               {/* Header */}
