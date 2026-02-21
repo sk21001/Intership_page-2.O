@@ -23,19 +23,26 @@ export default function InternshipDetailPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // Fetch internship data from API
+  // Fetch internship data from API (with retry for cold-start)
   useEffect(() => {
+    const fetchWithRetry = async (url, retries = 3, delay = 3000) => {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("Internship not found");
+          return await response.json();
+        } catch (err) {
+          if (i === retries - 1) throw err;
+          await new Promise((r) => setTimeout(r, delay));
+        }
+      }
+    };
+
     const fetchInternshipData = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`${API_URL}/internships/${type}`);
-        
-        if (!response.ok) {
-          throw new Error("Internship not found");
-        }
-        
-        const internshipData = await response.json();
+        const internshipData = await fetchWithRetry(`${API_URL}/internships/${type}`);
         setData(internshipData);
       } catch (err) {
         setError(err.message);

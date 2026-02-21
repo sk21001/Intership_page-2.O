@@ -7,13 +7,24 @@ const Habit = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch habit data from MongoDB API
+  // Fetch habit data from MongoDB API (with retry for cold-start)
   useEffect(() => {
+    const fetchWithRetry = async (url, retries = 3, delay = 3000) => {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("Failed to fetch");
+          return await response.json();
+        } catch (err) {
+          if (i === retries - 1) throw err;
+          await new Promise((r) => setTimeout(r, delay));
+        }
+      }
+    };
+
     const fetchHabitData = async () => {
       try {
-        const response = await fetch(`${API_URL}/habits`);
-        if (!response.ok) throw new Error("Failed to fetch");
-        const habitData = await response.json();
+        const habitData = await fetchWithRetry(`${API_URL}/habits`);
         setData(habitData);
       } catch (error) {
         console.error("Error fetching habit data:", error);
