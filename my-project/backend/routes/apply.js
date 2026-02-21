@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Application from "../models/Application.js";
-import transporter from "../utils/email.js";
+import getTransporter from "../utils/email.js";
 
 const router = Router();
 
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
 
     await newApp.save();
 
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.EMAIL,
       to: email,
       subject: "Internship Application Received",
