@@ -1,0 +1,15 @@
+import mongoose from "mongoose";
+
+const ApplicationSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  college: String,
+  education: String,
+  skills: String,
+  location: String,
+  about: String,
+  createdAt: { type: Date, default: Date.now },
+});
+
+export default mongoose.model("Application", ApplicationSchema);

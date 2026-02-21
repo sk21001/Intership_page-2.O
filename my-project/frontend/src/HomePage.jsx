@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { FaRocket, FaChartBar, FaCog, FaPaintBrush, FaFacebookF, FaTwitter, FaLinkedinIn, FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import Hero from "./components/Hero";
 import Hirings from "./components/Hirings";
 import Habit from "./components/Habit";
@@ -9,7 +10,7 @@ const internships = [
     id: "frontend",
     title: "Frontend Developer",
     description: "Master React, HTML, CSS, and modern web development",
-    icon: "🚀",
+    icon: <FaRocket className="text-white" />,
     color: "from-blue-500 to-cyan-500",
     badge: "Most Popular",
   },
@@ -17,7 +18,7 @@ const internships = [
     id: "dataAnalyst",
     title: "Data Analyst",
     description: "Learn SQL, Python, and data visualization techniques",
-    icon: "📊",
+    icon: <FaChartBar className="text-white" />,
     color: "from-purple-500 to-pink-500",
     badge: "High Demand",
   },
@@ -25,7 +26,7 @@ const internships = [
     id: "backendDeveloper",
     title: "Backend Developer",
     description: "Build scalable systems with Node.js and databases",
-    icon: "⚙️",
+    icon: <FaCog className="text-white" />,
     color: "from-green-500 to-emerald-500",
     badge: "Trending",
   },
@@ -33,7 +34,7 @@ const internships = [
     id: "uiuxDesign",
     title: "UI/UX Design",
     description: "Create beautiful interfaces with Figma and design principles",
-    icon: "🎨",
+    icon: <FaPaintBrush className="text-white" />,
     color: "from-orange-500 to-red-500",
     badge: "Creative",
   },
@@ -152,19 +153,13 @@ export default function HomePage() {
               </p>
               <div className="flex gap-3">
                 <a href="#" className="text-gray-400 hover:text-white transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
+                  <FaFacebookF className="w-4 h-4 text-blue-400 hover:text-blue-300" />
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 7.75.75 7.75.75z"/>
-                  </svg>
+                  <FaTwitter className="w-4 h-4 text-sky-400 hover:text-sky-300" />
                 </a>
                 <a href="#" className="text-gray-400 hover:text-white transition">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.39v-1.2h-2.5v8.5h2.5v-4.34c0-.84.64-1.63 1.67-1.63.93 0 1.64.7 1.64 1.7v4.27h2.5M5.5 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3m-1.25 9.5h2.5V9h-2.5v7.5z"/>
-                  </svg>
+                  <FaLinkedinIn className="w-4 h-4 text-blue-500 hover:text-blue-400" />
                 </a>
               </div>
             </div>
@@ -198,15 +193,15 @@ export default function HomePage() {
               <h4 className="text-sm font-semibold mb-3">Contact Us</h4>
               <div className="space-y-2 text-xs sm:text-sm text-gray-400">
                 <div className="flex items-start gap-2">
-                  <span className="text-orange-500 text-sm">📍</span>
+                  <FaMapMarkerAlt className="text-orange-500 text-sm mt-0.5" />
                   <p>123 Tech Street<br/>Bangalore, India</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-orange-500 text-sm">📧</span>
+                  <FaEnvelope className="text-orange-500 text-sm" />
                   <a href="mailto:info@xyzoninnovations.com" className="hover:text-white transition text-xs sm:text-sm break-all">info@xyzoninnovations.com</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-orange-500 text-sm">📞</span>
+                  <FaPhone className="text-orange-500 text-sm" />
                   <a href="tel:+919876543210" className="hover:text-white transition">+91 9876543210</a>
                 </div>
               </div>

@@ -1,6 +1,8 @@
 ﻿import { useEffect, useState } from "react";
 import ThreeBG from "./ThreeBG";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Habit = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +11,7 @@ const Habit = () => {
   useEffect(() => {
     const fetchHabitData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/habits");
+        const response = await fetch(`${API_URL}/habits`);
         if (!response.ok) throw new Error("Failed to fetch");
         const habitData = await response.json();
         setData(habitData);
@@ -94,14 +96,14 @@ const Habit = () => {
                   <div className="absolute top-0 right-0 w-16 h-16 bg-orange-200 rounded-full opacity-30 -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-lg">ΓÜí</span>
+                      <span className="text-lg">🚀</span>
                       <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">Xyzon</span>
                     </div>
                     <p className="text-gray-800 font-semibold text-sm leading-snug">
                       {row.xyzon}
                     </p>
                     <div className="mt-2 flex items-center gap-1 text-orange-600 font-bold text-xs">
-                      <span>Γ£ô</span>
+                      <span>✔</span>
                       <span>Leading</span>
                     </div>
                   </div>
@@ -112,7 +114,7 @@ const Habit = () => {
                   <div className="absolute top-0 right-0 w-16 h-16 bg-gray-300 rounded-full opacity-20 -mr-10 -mt-10"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-lg">Γùï</span>
+                      <span className="text-lg">⚠️</span>
                       <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">Others</span>
                     </div>
                     <p className="text-gray-700 font-medium text-sm leading-snug">
@@ -151,11 +153,11 @@ const Habit = () => {
                   <div className="absolute top-0 right-0 w-12 h-12 bg-orange-200 rounded-full opacity-20 -mr-6 -mt-6"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-1.5 mb-1">
-                      <span className="text-lg">ΓÜí</span>
+                      <span className="text-lg">🚀</span>
                       <span className="font-bold text-xs text-orange-700">Xyzon</span>
                     </div>
-                    <p className="text-gray-800 font-semibold text-xs">
-                      Γ£ô {row.xyzon}
+                    <p className="text-gray-800 font-semibold text-xs flex items-center gap-1">
+                      ✔ {row.xyzon}
                     </p>
                   </div>
                 </div>
@@ -165,7 +167,7 @@ const Habit = () => {
                   <div className="absolute top-0 right-0 w-12 h-12 bg-gray-300 rounded-full opacity-15 -mr-6 -mt-6"></div>
                   <div className="relative z-10">
                     <div className="flex items-center gap-1.5 mb-1">
-                      <span className="text-lg">Γùï</span>
+                      <span className="text-lg">⚠️</span>
                       <span className="font-bold text-xs text-gray-700">Others</span>
                     </div>
                     <p className="text-gray-700 text-xs">

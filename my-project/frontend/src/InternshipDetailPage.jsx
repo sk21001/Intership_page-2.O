@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaCalendarAlt, FaMapMarkerAlt, FaBriefcase, FaRocket, FaTrophy, FaBook, FaStar, FaCheck } from "react-icons/fa";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function InternshipDetailPage() {
   const { type } = useParams();
@@ -26,7 +29,7 @@ export default function InternshipDetailPage() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`http://localhost:5000/internships/${type}`);
+        const response = await fetch(`${API_URL}/internships/${type}`);
         
         if (!response.ok) {
           throw new Error("Internship not found");
@@ -105,7 +108,7 @@ export default function InternshipDetailPage() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/apply", {
+      const response = await fetch(`${API_URL}/apply`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -179,11 +182,11 @@ export default function InternshipDetailPage() {
                 Apply Now
               </button>
 
-              <span className="bg-white/20 px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base">
-                📅 {data.duration}
+              <span className="bg-white/20 px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base flex items-center gap-1">
+                <FaCalendarAlt className="text-indigo-200" /> {data.duration}
               </span>
-              <span className="bg-white/20 px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base">
-                📍 {data.mode}
+              <span className="bg-white/20 px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base flex items-center gap-1">
+                <FaMapMarkerAlt className="text-indigo-200" /> {data.mode}
               </span>
             </div>
           </div>
@@ -200,9 +203,9 @@ export default function InternshipDetailPage() {
 
       {/* Cards Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-        <Card emoji="💼" text="500+ openings" />
-        <Card emoji="🚀" text="Live projects" />
-        <Card emoji="🏆" text="Mentor support" />
+        <Card icon={<FaBriefcase className="text-indigo-600" />} text="500+ openings" />
+        <Card icon={<FaRocket className="text-orange-500" />} text="Live projects" />
+        <Card icon={<FaTrophy className="text-yellow-500" />} text="Mentor support" />
       </section>
 
       {/* Main Content */}
@@ -242,8 +245,8 @@ export default function InternshipDetailPage() {
             Join Internship →
           </button>
 
-          <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600">
-            ⭐ {data.rating} rating ({data.reviews} reviews)
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600 flex items-center gap-1">
+            <FaStar className="text-yellow-500" /> {data.rating} rating ({data.reviews} reviews)
           </p>
         </div>
       </section>
@@ -277,7 +280,7 @@ export default function InternshipDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {data.curriculum.slice(0, 2).map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-white p-3 rounded-lg">
-                      <span className="text-orange-500 text-lg">📚</span>
+                      <FaBook className="text-orange-500 text-lg" />
                       <span className="text-sm sm:text-base font-medium">{item}</span>
                     </div>
                   ))}
@@ -298,7 +301,7 @@ export default function InternshipDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {data.curriculum.slice(2, 4).map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-white p-3 rounded-lg">
-                      <span className="text-pink-500 text-lg">🚀</span>
+                      <FaRocket className="text-pink-500 text-lg" />
                       <span className="text-sm sm:text-base font-medium">{item}</span>
                     </div>
                   ))}
@@ -319,7 +322,7 @@ export default function InternshipDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {data.curriculum.slice(4).map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2 bg-white p-3 rounded-lg">
-                      <span className="text-indigo-500 text-lg">⭐</span>
+                      <FaStar className="text-indigo-500 text-lg" />
                       <span className="text-sm sm:text-base font-medium">{item}</span>
                     </div>
                   ))}
@@ -477,19 +480,7 @@ export default function InternshipDetailPage() {
               <div className="p-8 text-center flex flex-col items-center justify-center min-h-80">
                 <div className="mb-6 animate-bounce">
                   <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                    <svg
-                      className="w-16 h-16 text-green-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
+                    <FaCheck className="w-16 h-16 text-green-600" />
                   </div>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-green-600">
@@ -538,10 +529,10 @@ export default function InternshipDetailPage() {
 }
 
 /* Small Components */
-function Card({ emoji, text }) {
+function Card({ icon, text }) {
   return (
     <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md flex items-center gap-3">
-      <span className="text-2xl sm:text-3xl">{emoji}</span>
+      <span className="text-2xl sm:text-3xl">{icon}</span>
       <p className="font-medium text-sm sm:text-base">{text}</p>
     </div>
   );
@@ -559,7 +550,7 @@ function Item({ title, desc }) {
 function List({ text }) {
   return (
     <div className="flex gap-2 items-start mb-4 sm:mb-0">
-      <span className="text-lg sm:text-xl flex-shrink-0">✔</span>
+      <FaCheck className="text-lg sm:text-xl flex-shrink-0 text-green-600" />
       <span className="text-sm sm:text-base">{text}</span>
     </div>
   );

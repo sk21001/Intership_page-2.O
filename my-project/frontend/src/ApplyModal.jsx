@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function ApplyModal({ close }) {
   const [form, setForm] = useState({
   name: "",
@@ -19,7 +21,7 @@ export default function ApplyModal({ close }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch("http://localhost:5000/apply", {
+    await fetch(`${API_URL}/apply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
