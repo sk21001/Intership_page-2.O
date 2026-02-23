@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Application from "../models/Application.js";
-import getTransporter from "../utils/email.js";
+import getResend from "../utils/email.js";
 
 const router = Router();
 
@@ -25,8 +25,8 @@ router.post("/", async (req, res) => {
 
     // Send confirmation email (non-blocking — don't fail the request if email fails)
     try {
-      await getTransporter().sendMail({
-        from: `"Xyzon Innovations" <${process.env.EMAIL_USER}>`,
+      await getResend().emails.send({
+        from: "Xyzon Innovations <onboarding@resend.dev>",
         to: email,
         subject: "Internship Application Received",
         html: `

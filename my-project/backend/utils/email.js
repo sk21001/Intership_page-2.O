@@ -1,18 +1,12 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-let transporter;
+let resend;
 
-function getTransporter() {
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+function getResend() {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY);
   }
-  return transporter;
+  return resend;
 }
 
-export default getTransporter;
+export default getResend;
