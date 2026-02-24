@@ -14,6 +14,9 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   process.env.FRONTEND_URL,
+  "https://paradora.me",
+  "https://www.paradora.me",
+  "https://intership-page-2-o-5.onrender.com",
 ].filter(Boolean);
 
 app.use(cors({
