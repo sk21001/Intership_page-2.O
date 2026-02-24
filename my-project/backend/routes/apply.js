@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
     // Send confirmation email (non-blocking — don't fail the request if email fails)
     try {
       await getResend().emails.send({
-        from: "Xyzon Innovations <onboarding@resend.dev>",
+        from: process.env.EMAIL_FROM || "Xyzon Innovations <noreply@paradora.me>",
         to: email,
         subject: "Internship Application Received",
         html: `
