@@ -23,7 +23,6 @@ export default function InternshipDetailPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  // Fetch internship data from API (with retry for cold-start)
   useEffect(() => {
     const fetchWithRetry = async (url, retries = 3, delay = 3000) => {
       for (let i = 0; i < retries; i++) {
@@ -55,7 +54,6 @@ export default function InternshipDetailPage() {
     window.scrollTo(0, 0);
   }, [type]);
 
-  // Loading state
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -67,7 +65,6 @@ export default function InternshipDetailPage() {
     );
   }
 
-  // Error state
   if (error || !data) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -162,7 +159,6 @@ export default function InternshipDetailPage() {
 
   return (
     <div className="bg-slate-50 text-slate-800">
-      {/* Back Button */}
       <button
         onClick={handleBack}
         className="fixed top-3 sm:top-4 left-3 sm:left-4 bg-indigo-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-indigo-700 z-10 text-sm sm:text-base"
@@ -170,7 +166,6 @@ export default function InternshipDetailPage() {
         ← Back
       </button>
 
-      {/* Hero Section */}
       <section className="bg-gradient-to-r from-indigo-900 via-purple-800 to-indigo-900 text-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           <div className="pt-8 sm:pt-0">
@@ -208,14 +203,12 @@ export default function InternshipDetailPage() {
         </div>
       </section>
 
-      {/* Cards Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
         <Card icon={<FaBriefcase className="text-indigo-600" />} text="500+ openings" />
         <Card icon={<FaRocket className="text-orange-500" />} text="Live projects" />
         <Card icon={<FaTrophy className="text-yellow-500" />} text="Mentor support" />
       </section>
 
-      {/* Main Content */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
         <div className="lg:col-span-2 bg-white p-6 sm:p-8 lg:p-10 rounded-2xl shadow-sm border">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">
@@ -258,7 +251,6 @@ export default function InternshipDetailPage() {
         </div>
       </section>
 
-      {/* Curriculum Section - Timeline Based */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16 lg:pb-20">
         <div className="mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3">
@@ -270,11 +262,9 @@ export default function InternshipDetailPage() {
         </div>
 
         <div className="relative">
-          {/* Timeline */}
           <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-400 via-pink-500 to-orange-400"></div>
 
           <div className="space-y-8 lg:space-y-12">
-            {/* Phase 1 */}
             <div className="lg:pl-12 relative">
               <div className="absolute -left-4 lg:-left-6 top-0 w-8 h-8 bg-orange-500 border-4 border-white rounded-full shadow-lg"></div>
               <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 p-6 sm:p-8 rounded-2xl">
@@ -295,7 +285,6 @@ export default function InternshipDetailPage() {
               </div>
             </div>
 
-            {/* Phase 2 */}
             <div className="lg:pl-12 relative">
               <div className="absolute -left-4 lg:-left-6 top-0 w-8 h-8 bg-pink-500 border-4 border-white rounded-full shadow-lg"></div>
               <div className="bg-gradient-to-br from-pink-50 to-pink-100 border border-pink-200 p-6 sm:p-8 rounded-2xl">
@@ -316,7 +305,6 @@ export default function InternshipDetailPage() {
               </div>
             </div>
 
-            {/* Phase 3 */}
             <div className="lg:pl-12 relative">
               <div className="absolute -left-4 lg:-left-6 top-0 w-8 h-8 bg-indigo-500 border-4 border-white rounded-full shadow-lg"></div>
               <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 p-6 sm:p-8 rounded-2xl">
@@ -340,7 +328,6 @@ export default function InternshipDetailPage() {
         </div>
       </section>
 
-      {/* Application Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
@@ -509,7 +496,6 @@ export default function InternshipDetailPage() {
         </div>
       )}
 
-      {/* CTA Section - Ready to Start Your Journey */}
       <section className="bg-gradient-to-r from-indigo-900 via-purple-800 to-indigo-900 py-12 sm:py-16 lg:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4">
@@ -535,7 +521,6 @@ export default function InternshipDetailPage() {
   );
 }
 
-/* Small Components */
 function Card({ icon, text }) {
   return (
     <div className="bg-white p-4 sm:p-6 rounded-xl shadow-md flex items-center gap-3">

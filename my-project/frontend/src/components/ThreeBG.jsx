@@ -2,7 +2,6 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import { Float, Text, Box } from "@react-three/drei";
 
-// Simple animated 3D background: starfield with camera controls
 export default function ThreeBG({ className = "", style = {} }) {
   return (
     <div

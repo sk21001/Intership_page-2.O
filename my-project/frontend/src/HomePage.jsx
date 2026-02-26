@@ -71,13 +71,10 @@ export default function HomePage() {
 
   return (
     <div className="bg-slate-50 text-slate-800 min-h-screen">
-      {/* Hero Section with Browse Button */}
       <Hero onBrowseClick={handleBrowseInternships} />
 
-      {/* Habit Section */}
       <Habit />
 
-      {/* Why Choose Us Section */}
       <section className="bg-white py-12 sm:py-16 lg:py-20 mt-12 sm:mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-10 sm:mb-16">Why Choose Our Internships?</h2>
@@ -117,7 +114,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Internship Selection Section */}
       <section
         ref={internshipSectionRef}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
@@ -138,14 +134,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Internship Hiring Partners Section */}
       <Hirings />
 
-      {/* Footer */}
       <footer className="bg-slate-900 text-white py-6 sm:py-8 lg:py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-            {/* Company Info */}
             <div>
               <h3 className="text-lg sm:text-xl font-bold mb-3">Xyzon Innovations</h3>
               <p className="text-gray-400 text-xs sm:text-sm mb-4">
@@ -164,7 +157,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Quick Links */}
             <div>
               <h4 className="text-sm font-semibold mb-3">Quick Links</h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
@@ -176,7 +168,6 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Resources */}
             <div>
               <h4 className="text-sm font-semibold mb-3">Resources</h4>
               <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
@@ -188,7 +179,6 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Contact Info */}
             <div>
               <h4 className="text-sm font-semibold mb-3">Contact Us</h4>
               <div className="space-y-2 text-xs sm:text-sm text-gray-400">
@@ -208,7 +198,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Divider */}
           <div className="border-t border-gray-700 pt-4 sm:pt-6">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
               <p className="text-gray-400 text-xs text-center sm:text-left">

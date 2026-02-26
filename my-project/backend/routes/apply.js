@@ -4,7 +4,6 @@ import getResend from "../utils/email.js";
 
 const router = Router();
 
-// POST apply for internship
 router.post("/", async (req, res) => {
   try {
     const { name, email, phone, college, education, skills, location, about } =
@@ -23,7 +22,6 @@ router.post("/", async (req, res) => {
 
     await newApp.save();
 
-    // Send confirmation email (non-blocking — don't fail the request if email fails)
     try {
       await getResend().emails.send({
         from: process.env.EMAIL_FROM || "Xyzon Innovations <noreply@paradora.me>",

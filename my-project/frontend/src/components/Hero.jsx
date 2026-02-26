@@ -133,7 +133,6 @@ const Hero = ({ onBrowseClick }) => {
           </div>
         </div>
 
-        {/* Right Side - Video */}
         <div className="flex justify-center items-center w-full mt-10 lg:mt-0 relative">
           {!showVideo ? (
             <div></div>

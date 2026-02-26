@@ -3,7 +3,6 @@ import HabitData from "../models/HabitData.js";
 
 const router = Router();
 
-// GET all habit/comparison data
 router.get("/", async (req, res) => {
   try {
     const habits = await HabitData.find().sort({ order: 1 });

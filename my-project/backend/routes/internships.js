@@ -3,7 +3,6 @@ import Internship from "../models/Internship.js";
 
 const router = Router();
 
-// GET all internships
 router.get("/", async (req, res) => {
   try {
     const internships = await Internship.find();
@@ -14,7 +13,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET internship by type
 router.get("/:type", async (req, res) => {
   try {
     const internship = await Internship.findOne({ type: req.params.type });
